@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   commands3.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/02 11:07:38 by ecamara           #+#    #+#             */
-/*   Updated: 2021/12/02 12:58:20 by ecamara          ###   ########.fr       */
+/*   Created: 2022/03/09 11:36:50 by ecamara           #+#    #+#             */
+/*   Updated: 2022/03/09 13:30:20 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "libft/libft.h"
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-
-int		ft_check(char *str);
-void	ft_create_list(t_list **head_a, char **str);
-
-#endif
+void	ft_rrr(t_list **head_a, t_list **head_b)
+{
+	ft_rra(head_a, 0);
+	ft_rrb(head_b, 0);
+	write(1, "rrr\n", 4);
+}
