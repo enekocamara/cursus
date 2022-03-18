@@ -6,7 +6,7 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 11:37:15 by ecamara           #+#    #+#             */
-/*   Updated: 2022/03/09 14:28:32 by ecamara          ###   ########.fr       */
+/*   Updated: 2022/03/11 13:09:48 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,18 @@ void	ft_best_logic(t_list **head_a, t_list **head_b)
 	}
 }
 
-void	ft_push_chunck_b(t_list  **head_a, t_list **head_b, int pivot)
+static void	ft_push_chunck_b2(t_list **head_a, t_list **head_b, int rrb)
+{
+	while (rrb > 0)
+	{
+		ft_rrb(head_b, 1);
+		rrb--;
+	}
+	if (ft_chunck_size(head_b) <= 2)
+		ft_2_left_b(head_a, head_b);
+}
+
+void	ft_push_chunck_b(t_list **head_a, t_list **head_b, int pivot)
 {
 	int		rrb;
 	int		chunck;
@@ -60,13 +71,7 @@ void	ft_push_chunck_b(t_list  **head_a, t_list **head_b, int pivot)
 		}
 		temp = *head_b;
 	}
-	while (rrb > 0)
-	{
-		ft_rrb(head_b, 1);
-		rrb--;
-	}
-	if (ft_chunck_size(head_b) <= 2)
-		ft_2_left_b(head_a, head_b);
+	ft_push_chunck_b2(head_a, head_b, rrb);
 }
 
 static int	ft_pass_a2(t_list **head_a, t_list **head_b, int pivot, int chunck)

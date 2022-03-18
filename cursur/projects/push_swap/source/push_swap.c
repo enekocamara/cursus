@@ -6,7 +6,7 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 10:37:58 by ecamara           #+#    #+#             */
-/*   Updated: 2022/03/09 14:11:27 by ecamara          ###   ########.fr       */
+/*   Updated: 2022/03/11 13:39:44 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 
 	head_b = NULL;
 	head_a = NULL;
-	if (argc == 1)
+	if (argc < 2)
 		exit(0);
 	if (argc != 1 && argc != 2)
 		ft_create_list(&head_a, argv + 1, 0);
@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 		ft_create_list(&head_a, ft_split(argv[1], ' '), 1);
 	if (ft_check_repeat(head_a))
 	{
+		ft_freelist(head_a);
 		write(2, "Error\n", 6);
 		return (0);
 	}

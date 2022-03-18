@@ -6,11 +6,40 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 11:34:34 by ecamara           #+#    #+#             */
-/*   Updated: 2022/03/09 12:58:59 by ecamara          ###   ########.fr       */
+/*   Updated: 2022/03/11 13:32:04 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_atoi_ps(const char *str)
+{
+	int					c;
+	int					i;
+	unsigned long int	num;
+
+	c = 0;
+	i = 1;
+	num = 0;
+	while (str[c] && (str[c] == ' ' || (str[c] <= 13 && str[c] >= 9)))
+		c++;
+	if (str[c] == '-' || str[c] == '+')
+	{
+		if (str[c] == '-')
+			i *= -1;
+		c++;
+	}
+	while (str[c] <= '9' && str[c] >= '0' && str[c] != '\0')
+	{
+		num = (num * 10) + (str[c] - '0');
+		c++;
+	}
+	if (num > 2147483647 && i == 1)
+		ft_error();
+	if (num > 2147483648 && i == -1)
+		ft_error();
+	return (num * i);
+}
 
 t_list	*ft_lstnew_ps(size_t content)
 {
@@ -52,25 +81,21 @@ void	ft_create_list(t_list **head_a, char **str, int boo)
 	t_list	*temp;
 
 	i = 0;
+	ft_check_before(str, boo);
 	while (str[i] != NULL)
 	{
-		if (!ft_check(str[i]))
-		{
-			ft_free2str(str, boo);
-			ft_freelist(*head_a);
-			ft_error();
-		}
-		num = ft_atoi(str[i]);
+		num = ft_atoi_ps(str[i]);
 		ft_lstadd_back(head_a, ft_lstnew_ps(num));
 		i++;
 	}
-	ft_free2str(str, boo);
 	temp = *head_a;
 	while (temp != NULL)
 	{
 		temp->chunck = 0;
 		temp = temp->next;
 	}
+	if (boo == 1)
+		ft_free2str(str, boo);
 }
 
 int	ft_check_repeat(t_list *head)
