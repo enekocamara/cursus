@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   aux.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/11 11:36:01 by ecamara           #+#    #+#             */
-/*   Updated: 2022/03/11 11:45:47 by ecamara          ###   ########.fr       */
+/*   Created: 2022/03/11 11:41:22 by ecamara           #+#    #+#             */
+/*   Updated: 2022/05/04 09:08:00 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	ft_error(int a)
+/*
+void	ft_free_thread(t_data *data, t_death *death, int totals)
 {
-	printf ("Error\n");
-	if (a == 1)
-		printf("Input was incorrect\n");
-	else if (a == 2)
-		printf("malloc\n");
-	else if (a == 3)
-		printf ("hilos\n");
-	return (1);
-}
+	int	i;
+
+	i = 0;
+	pthread_mutex_destroy(&death->m_death);
+	while (i < totals)
+	{
+		pthread_mutex_destroy(&data->forks[i].mutex);
+		i++;
+	}
+	free(data->forks);
+}*/

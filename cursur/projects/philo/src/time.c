@@ -6,38 +6,30 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 11:37:53 by ecamara           #+#    #+#             */
-/*   Updated: 2022/03/11 13:58:55 by ecamara          ###   ########.fr       */
+/*   Updated: 2022/05/05 09:15:32 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_diff(int t_to_eat, int t_to_sleep)
-{
-	if (t_to_sleep - t_to_eat < 0)
-		return (t_to_eat - t_to_sleep);
-	return (t_to_sleep - t_to_eat);
-}
-
-int	ft_my_usleep(t_philo *philo, int time, int time_to_die)
+int	ft_my_usleep(t_philo *philo, int time)
 {
 	struct timeval	now;
 	struct timeval	end;
 	int				i;
 
-	(void)time_to_die;
 	gettimeofday(&now, NULL);
 	gettimeofday(&end, NULL);
 	i = 0;
 	while (ft_to_ml(end) - ft_to_ml(now) < time)
 	{
+		usleep(100);
 		gettimeofday(&end, NULL);
-		usleep(5);
 		if (ft_to_ml(end) - ft_to_ml(now) - i < 10)
 		{
+			i += 10;
 			if (ft_death(philo))
 				return (1);
-			i += 10;
 		}
 	}
 	if (ft_death(philo))
@@ -45,18 +37,44 @@ int	ft_my_usleep(t_philo *philo, int time, int time_to_die)
 	return (0);
 }
 
-int	ft_to_ml(struct timeval time)
+long int	ft_to_ml(struct timeval time)
 {
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-long int	ft_time(t_time *g_time)
+long int	ft_time(t_philo *philo)
 {
 	struct timeval	now;
-	long int		ms;
+	long int		time;
 
 	gettimeofday(&now, NULL);
-	ms = (now.tv_sec * 1000 + now.tv_usec / 1000)
-		- (g_time->time.tv_sec * 1000 + g_time->time.tv_usec / 1000);
-	return (ms);
+	time = (now.tv_sec * 1000 + now.tv_usec / 1000)
+		- (philo->data->init_time.tv_sec * 1000
+			+ philo->data->init_time.tv_usec / 1000);
+	return (time);
+}
+
+int	ft_death(t_philo *philo)
+{
+	long int		time;
+	struct timeval	now;
+
+	pthread_mutex_lock(philo->data->m_death);
+	if (philo->data->death)
+	{
+		pthread_mutex_unlock(philo->data->m_death);
+		return (1);
+	}
+	gettimeofday(&now, NULL);
+	time = (now.tv_sec * 1000 + now.tv_usec / 1000)
+		- (philo->time.tv_sec * 1000 + philo->time.tv_usec / 1000);
+	if (time <= philo->data->t_die)
+	{
+		pthread_mutex_unlock(philo->data->m_death);
+		return (0);
+	}
+	philo->data->death = 1;
+	printf("%ld %d died\n", ft_time(philo), philo->id);
+	pthread_mutex_unlock(philo->data->m_death);
+	return (1);
 }

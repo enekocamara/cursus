@@ -6,7 +6,7 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:46:03 by ecamara           #+#    #+#             */
-/*   Updated: 2022/03/18 10:41:42 by ecamara          ###   ########.fr       */
+/*   Updated: 2022/05/05 09:21:49 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,33 @@ int	ft_atoi_ph(const char *str)
 	return (num * i);
 }
 
-int	ft_f_left(int philo_num, int num_of_philo)
+int	ft_f_left(int id, int total)
 {
-	if (philo_num == 1)
-		return (num_of_philo - 1);
-	return (philo_num - 2);
+	if (id == 1)
+		return (total - 1);
+	return (id - 2);
+}
+
+void	ft_pass_data(t_data *data, t_philo *philo)
+{
+	philo->forks = data->forks;
+	philo->total = data->total;
+	philo->data = data;
+	philo->eat_times = data->eat_times;
+}
+
+void	ft_free_data(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->total)
+	{
+		pthread_mutex_destroy(&data->forks[i].mutex);
+		i++;
+	}
+	free(data->forks);
+	free(data->threads);
+	pthread_mutex_destroy(data->m_death);
+	free(data->m_death);
 }

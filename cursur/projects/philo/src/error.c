@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/11 11:35:27 by ecamara           #+#    #+#             */
-/*   Updated: 2022/03/15 10:52:04 by ecamara          ###   ########.fr       */
+/*   Created: 2022/03/11 11:36:01 by ecamara           #+#    #+#             */
+/*   Updated: 2022/04/08 10:59:52 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+int	ft_error(int a)
 {
-	t_data	data;
-	int		num_of_philos;
-	int		error;
-
-	error = 0;
-	if (argc != 5 && argc != 6)
-		return (ft_error(1));
-	if (ft_check_input(argv))
-		return (1);
-	num_of_philos = ft_input(&data, argv);
-	if (ft_data_create(&data, num_of_philos))
-		return (ft_error(2));
-	if (ft_create_thread(&data, num_of_philos))
-		return (ft_error(3));
-	return (0);
+	printf ("Error\n");
+	if (a == 1)
+		printf("Input was incorrect\n");
+	else if (a == 2)
+		printf("malloc\n");
+	else if (a == 3)
+		printf ("hilos\n");
+	return (1);
 }
