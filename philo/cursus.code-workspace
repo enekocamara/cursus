@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"so_long.h": "c",
+			"locale": "c"
+		}
+	}
+}
