@@ -6,7 +6,7 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 15:21:00 by ecamara           #+#    #+#             */
-/*   Updated: 2022/12/22 15:58:02 by ecamara          ###   ########.fr       */
+/*   Updated: 2022/12/23 11:32:40 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class Checker
         ~Checker();
         void assertCheck(int expected, int actual, std::string test) const;
         void assertCheck(std::string expected, std::string actual, std::string test) const;
+        void assertCheck(double expected, double actual, std::string test) const;
 };
 
 #endif

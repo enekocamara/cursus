@@ -6,7 +6,7 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:41:18 by ecamara           #+#    #+#             */
-/*   Updated: 2022/12/22 19:04:49 by ecamara          ###   ########.fr       */
+/*   Updated: 2022/12/23 12:45:49 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,16 @@ char Void::getChar()const
     return (_char.getChar());
 }
 
+double Void::getDouble() const
+{
+    return (_double.getDouble());
+}
+
+float Void::getFloat() const
+{
+    return (_float.getFloat());
+}
+
 void Void::checkType(char *str)
 {
     size_t len;
@@ -95,11 +105,33 @@ void Void::checkType(char *str)
         throw Imposible();
 }
 
+int Void::exceptions(std::string str)
+{
+    if (str == "+inf" || str == "-inf" || str == "nan")
+    {
+        _int.assignException(std::string("imposible"));
+        _char.assignException(std::string("imposible"));
+        _double.assignException(str);
+        _float.assignException(str + "f");
+        return (1);
+    }
+    if (str == "+inff" || str == "-inff" || str == "nanf")
+    {
+        _int.assignException(std::string("imposible"));
+        _char.assignException(std::string("imposible"));
+        _double.assignException(str.substr(0, str.length() - 1));
+        _float.assignException(str);
+        return (1);
+    }
+    return (0);
+}
+
 void Void::assign(char *str)
 {
     try
     {
-        checkType(str);
+        if (!exceptions(std::string(str)))
+            checkType(str);
     }
     catch(std::exception &e)
     {
@@ -109,10 +141,32 @@ void Void::assign(char *str)
     }
 }
 
-void Void::assignException(std::string &exception)
+void Void::assignException(std::string exception)
 {
    _int.assignException(exception);
    _char.assignException(exception);
    _double.assignException(exception);
    _float.assignException(exception);
+}
+
+void Void::print() const
+{
+    if (_char.getExceptionTrue())
+       std::cout << "char: " << _char.getException() << std::endl;
+    else 
+        std::cout << "char: " << _char.getChar() << std::endl;
+    if (_int.getExceptionTrue())
+       std::cout << "int: " << _int.getException() << std::endl;
+    else 
+        std::cout << "int: " << _int.getInt() << std::endl;
+    if (_double.getExceptionTrue())
+       std::cout << "double: " << _double.getException() << std::endl;
+    else 
+    {
+        std::cout << "double: " << _double.getDouble() << std::endl;
+    }
+    if (_float.getExceptionTrue())
+       std::cout << "float: " << _float.getException() << std::endl;
+    else 
+        std::cout << "float: " << _float.getFloat() << std::endl;
 }

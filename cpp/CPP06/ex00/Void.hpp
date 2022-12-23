@@ -6,7 +6,7 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:01:00 by ecamara           #+#    #+#             */
-/*   Updated: 2022/12/22 18:47:19 by ecamara          ###   ########.fr       */
+/*   Updated: 2022/12/23 12:46:46 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "Char.hpp"
 #include "color.h"
 #include <iostream>
+<iomanip>
 
 class Void
 {
@@ -27,7 +28,7 @@ class Void
         ~Void();
 
         void assign(char *str);
-        void assignException(std::string &exception);
+        void assignException(std::string exception);
         void checkType(char *str);
         void fillAllTypes(int value);
         void fillAllTypes(char c);
@@ -35,6 +36,10 @@ class Void
         void fillAllTypes(float value);
         int getInt()const;
         char getChar()const;
+        double getDouble()const;
+        float getFloat()const;
+        int exceptions(std::string str);
+        void print()const;
         class Overflow : public std::exception
 		{
 			virtual const char* what() const throw(){

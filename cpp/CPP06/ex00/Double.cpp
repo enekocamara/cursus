@@ -6,7 +6,7 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:48:20 by ecamara           #+#    #+#             */
-/*   Updated: 2022/12/22 17:59:38 by ecamara          ###   ########.fr       */
+/*   Updated: 2022/12/23 12:33:09 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,23 @@ void Double::setValue(double value)
     _value = value;
 }
 
-void Double::assignException(std::string &exception)
+void Double::assignException(std::string exception)
 {
     _exception = exception;
     _exceptionTrue = 1;
+}
+
+double Double::getDouble() const
+{
+    return (_value);
+}
+
+int Double::getExceptionTrue()const
+{
+    return (_exceptionTrue);
+}
+
+std::string Double::getException()const
+{
+    return (_exception);
 }

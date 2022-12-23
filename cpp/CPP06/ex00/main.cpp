@@ -6,7 +6,7 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:44:42 by ecamara           #+#    #+#             */
-/*   Updated: 2022/12/22 18:23:50 by ecamara          ###   ########.fr       */
+/*   Updated: 2022/12/23 12:39:13 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,8 @@ int main(int argc, char *argv[])
     Void values;
     if (argc != 2)
         return (1);
-    std::cout << argv[1] << std::endl;
     values.assign(argv[1]);
-    values.checkType(argv[1]);
+    values.print();
     return (0);
 }
 

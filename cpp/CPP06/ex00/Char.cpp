@@ -6,7 +6,7 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:48:20 by ecamara           #+#    #+#             */
-/*   Updated: 2022/12/22 18:33:10 by ecamara          ###   ########.fr       */
+/*   Updated: 2022/12/23 12:32:05 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void Char::setValue(char value)
     _value = value;
 }
 
-void Char::assignException(std::string &exception)
+void Char::assignException(std::string exception)
 {
     _exception = exception;
     _exceptionTrue = 1;
@@ -37,4 +37,14 @@ void Char::assignException(std::string &exception)
 char Char::getChar()const
 {
     return (_value);
+}
+
+int Char::getExceptionTrue()const
+{
+    return (_exceptionTrue);
+}
+
+std::string Char::getException()const
+{
+    return (_exception);
 }

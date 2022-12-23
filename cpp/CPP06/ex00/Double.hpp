@@ -6,7 +6,7 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 12:21:47 by ecamara           #+#    #+#             */
-/*   Updated: 2022/12/22 17:59:07 by ecamara          ###   ########.fr       */
+/*   Updated: 2022/12/23 12:33:02 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ class Double
         Double();
         ~Double();
         void setValue(double value);
-        void assignException(std::string &exception);
+        void assignException(std::string exception);
+        double getDouble()const;
+        int getExceptionTrue()const;
+        std::string getException()const;
     private:
         double _value;
         int _exceptionTrue;

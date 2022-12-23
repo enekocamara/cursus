@@ -6,7 +6,7 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 12:21:47 by ecamara           #+#    #+#             */
-/*   Updated: 2022/12/22 18:32:42 by ecamara          ###   ########.fr       */
+/*   Updated: 2022/12/23 12:32:35 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ class Char
         Char();
         ~Char();
         void setValue(char value);
-        void assignException(std::string &exception);
+        void assignException(std::string exception);
         char getChar()const;
+        int getExceptionTrue()const;
+        std::string getException()const;
     private:
         char _value;
         int _exceptionTrue;

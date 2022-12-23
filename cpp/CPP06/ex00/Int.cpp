@@ -6,7 +6,7 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:48:20 by ecamara           #+#    #+#             */
-/*   Updated: 2022/12/22 17:59:52 by ecamara          ###   ########.fr       */
+/*   Updated: 2022/12/23 12:33:56 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,18 @@ int Int::getInt() const
     return (_value);
 }
 
-void Int::assignException(std::string &exception)
+void Int::assignException(std::string exception)
 {
     _exception = exception;
     _exceptionTrue = 1;
+}
+
+int Int::getExceptionTrue()const
+{
+    return (_exceptionTrue);
+}
+
+std::string Int::getException()const
+{
+    return (_exception);
 }

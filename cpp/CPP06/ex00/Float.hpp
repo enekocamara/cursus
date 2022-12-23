@@ -6,7 +6,7 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 12:21:47 by ecamara           #+#    #+#             */
-/*   Updated: 2022/12/22 17:59:09 by ecamara          ###   ########.fr       */
+/*   Updated: 2022/12/23 12:33:21 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ class Float
         Float();
         ~Float();
         void setValue(float value);
-        void assignException(std::string &exception);
+        void assignException(std::string exception);
+        float getFloat()const;
+        int getExceptionTrue()const;
+        std::string getException()const;
     private:
         float _value;
         int _exceptionTrue;

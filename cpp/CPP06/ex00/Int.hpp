@@ -6,7 +6,7 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 12:21:47 by ecamara           #+#    #+#             */
-/*   Updated: 2022/12/22 17:59:56 by ecamara          ###   ########.fr       */
+/*   Updated: 2022/12/23 12:34:04 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ class Int
         ~Int();
         void setValue(int value);
         int getInt()const;
-        void assignException(std::string &exception);
+        void assignException(std::string exception);
+        int getExceptionTrue()const;
+        std::string getException()const;
     private:
         int _value;
         int _exceptionTrue;
