@@ -60,6 +60,7 @@
         "unordered_map": "cpp",
         "utility": "cpp",
         "vector": "cpp",
-        "__memory": "cpp"
+        "stack": "cpp",
+        "deque": "cpp"
     }
 }

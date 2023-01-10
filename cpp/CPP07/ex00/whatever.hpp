@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   void.hpp                                           :+:      :+:    :+:   */
+/*   whatever.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/26 12:04:58 by ecamara           #+#    #+#             */
-/*   Updated: 2022/12/26 13:29:48 by ecamara          ###   ########.fr       */
+/*   Created: 2022/12/29 10:12:39 by ecamara           #+#    #+#             */
+/*   Updated: 2022/12/29 10:15:36 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VOID_HPP
-#define VOID_HPP
-
-#include <iostream>
-
-class Void
+template <typename T> T min(T a, T b)
 {
-    public:
-        Void(int type, std::string str);
-        ~Void();
-        
-        void printExceptions();
-        void setPrecision();
-        void printNums();
-        void setChar();
-    private:
-        const int   _type;
-        int         _pre;
-        double      _num;
-        std::string _str;
-};
+    if (a < b)
+        return (a); 
+    return (b);
+}
 
-#endif
+template <typename T> T max(T a, T b)
+{
+    if (a > b)
+        return (a); 
+    return (b);
+}
+
+template <typename T> void swap(T &a, T &b)
+{
+    T temp = a;
+    a = b;
+    b = temp;
+}

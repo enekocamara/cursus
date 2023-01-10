@@ -6,7 +6,7 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 15:21:00 by ecamara           #+#    #+#             */
-/*   Updated: 2022/12/23 11:32:40 by ecamara          ###   ########.fr       */
+/*   Updated: 2022/12/26 11:11:42 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #define CHECKER_HPP
 
 #include <stdlib.h>
-#include "../Void.hpp"
+#include <iostream>
+#include "color.h"
 
 class Checker
 {

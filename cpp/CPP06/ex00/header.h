@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Char.hpp                                           :+:      :+:    :+:   */
+/*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/22 12:21:47 by ecamara           #+#    #+#             */
-/*   Updated: 2022/12/23 12:32:35 by ecamara          ###   ########.fr       */
+/*   Created: 2022/12/26 10:52:28 by ecamara           #+#    #+#             */
+/*   Updated: 2022/12/26 12:11:33 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHAR_HPP
-#define CHAR_HPP
-
+#include <stdlib.h>
 #include <iostream>
-#include <string>
+#include <stdio.h>
 #include "color.h"
+#include "Void.hpp"
 
-class Char
-{
-    public:
-        Char();
-        ~Char();
-        void setValue(char value);
-        void assignException(std::string exception);
-        char getChar()const;
-        int getExceptionTrue()const;
-        std::string getException()const;
-    private:
-        char _value;
-        int _exceptionTrue;
-        std::string _exception;
-};
-
-#endif
+/* CONVERT */
+int    convert(char *str);
+int checkNum(char *str);
+int checkExceptions(std::string string);
+int checkChar(char *str);

@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   void.hpp                                           :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/26 12:04:58 by ecamara           #+#    #+#             */
-/*   Updated: 2022/12/26 13:29:48 by ecamara          ###   ########.fr       */
+/*   Created: 2022/12/29 10:21:10 by ecamara           #+#    #+#             */
+/*   Updated: 2022/12/29 10:34:09 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VOID_HPP
-#define VOID_HPP
-
 #include <iostream>
 
-class Void
+template <typename T> void sum(T &a)
 {
-    public:
-        Void(int type, std::string str);
-        ~Void();
-        
-        void printExceptions();
-        void setPrecision();
-        void printNums();
-        void setChar();
-    private:
-        const int   _type;
-        int         _pre;
-        double      _num;
-        std::string _str;
-};
+    a++;
+}
 
-#endif
+template <typename T> void show(T &a)
+{
+    std::cout << "[" << a << "]";
+}
+
+template <typename T> void iter(T *add, size_t length, void(*f)(T&))
+{
+    size_t i;
+
+    i = 0;
+    while (i < length)
+    {
+        f(add[i]);
+        i++;
+    }
+}

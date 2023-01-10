@@ -1,20 +1,21 @@
-NAME = convert
+NAME = Identify
 
-SRC = 	main.cpp	\
-		Void.cpp	\
-		convert.cpp	\
+SRC =	main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-INCLUDES = Void.hpp
+INCLUDES =	Base.hpp	\
+			A.hpp		\
+			B.hpp		\
+			C.hpp
+
+FLAGS = -Werror -Wextra -Wall
 
 CC = clang++
 
-FLAGS = -Werror -Wall -Werror
-
 all: $(NAME)
 
-%.o: %.cpp
+%.o:%.cpp
 	$(CC) $(FLAGS) -c $^ -o $@
 
 $(NAME): $(OBJ) $(INCLUDES)
@@ -24,7 +25,7 @@ clean:
 	rm -rf $(OBJ)
 
 fclean: clean
-		rm -rf $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
 

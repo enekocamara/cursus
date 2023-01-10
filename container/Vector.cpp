@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   void.hpp                                           :+:      :+:    :+:   */
+/*   Vector.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/26 12:04:58 by ecamara           #+#    #+#             */
-/*   Updated: 2022/12/26 13:29:48 by ecamara          ###   ########.fr       */
+/*   Created: 2023/01/10 13:05:10 by ecamara           #+#    #+#             */
+/*   Updated: 2023/01/10 13:17:05 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VOID_HPP
-#define VOID_HPP
+#include "Vector.hpp"
 
-#include <iostream>
-
-class Void
+Vector::Vector (const Alloc& alloc)
 {
-    public:
-        Void(int type, std::string str);
-        ~Void();
-        
-        void printExceptions();
-        void setPrecision();
-        void printNums();
-        void setChar();
-    private:
-        const int   _type;
-        int         _pre;
-        double      _num;
-        std::string _str;
-};
-
-#endif
+    
+}

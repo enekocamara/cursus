@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   void.hpp                                           :+:      :+:    :+:   */
+/*   vector.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/26 12:04:58 by ecamara           #+#    #+#             */
-/*   Updated: 2022/12/26 13:29:48 by ecamara          ###   ########.fr       */
+/*   Created: 2023/01/10 12:26:11 by ecamara           #+#    #+#             */
+/*   Updated: 2023/01/10 13:02:55 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VOID_HPP
-#define VOID_HPP
+#ifndef VECTOR_HPP 
+#define VECTOR_HPP
 
-#include <iostream>
 
-class Void
+template < class T, class Alloc = allocator<T> >
+class Vector
 {
     public:
-        Void(int type, std::string str);
-        ~Void();
-        
-        void printExceptions();
-        void setPrecision();
-        void printNums();
-        void setChar();
-    private:
-        const int   _type;
-        int         _pre;
-        double      _num;
-        std::string _str;
-};
+        explicit Vector (const Alloc& alloc = Alloc());
+        explicit Vector (size_t n, const T& val = T(), const Alloc& alloc = Alloc());
+        template <class InputIterator> vector (InputIterator first, InputIterator last, const Alloc& alloc = Alloc());
+        vector (const vector& x);
+}
 
 #endif

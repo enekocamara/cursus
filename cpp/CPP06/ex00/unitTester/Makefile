@@ -1,40 +1,34 @@
 NAME = unitTester
 
-SRC =	mainTester.cpp	\
+SRC = 	mainTester.cpp	\
 		Checker.cpp		\
-		../Char.cpp		\
-		../Int.cpp		\
-		../Float.cpp	\
-		../Double.cpp	\
-		../Void.cpp		\
+		../convert.cpp	\
+		../Void.cpp
 
-INCLUDES =	Checker.hpp		\
-			../Char.hpp		\
-			../Int.hpp		\
-			../Float.hpp	\
-			../Double.hpp	\
+OBJ  = $(SRC:.cpp=.o)
+
+INCLUDES =	Checker.hpp\
 			../Void.hpp
 
-OBJ = $(SRC:.cpp=.o)
+FLAGS = -Wall -Werror -Wextra
 
 CC = clang++
 
-CPPFLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 
 %.o: %.cpp
-	$(CC) $(CPPFLAGS) -c $^ -o $@
+	$(CC) $(FLAGS) -c $^ -o $@
 
-$(NAME): $(OBJ) $(INCLUDE)
-	$(CC) $(CPPFLAGS) $(OBJ) -o $@
+$(NAME): $(OBJ) $(INCLUDES)
+	$(CC) $(FLAGS) $(OBJ) -o $@
 
 clean:
-	rm -rf *.o
+	rm -rf $(OBJ)
 
 fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
 
-PHONY: clean fclean re all
+PHONY: all re clean fclean
