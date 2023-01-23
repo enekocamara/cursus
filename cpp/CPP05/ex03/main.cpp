@@ -11,7 +11,7 @@ int main()
 	Bureaucrat gigaChad("GigaChad", 1);
 	try
 	{
-		Form *trial = mike.makeForm("presidential pardon", "unai black track");
+		Form *trial = mike.makeForm("shrubbery creation", "unai black track");
 		gigaChad.signForm(*trial);
 		gigaChad.executeForm(*trial);
 		delete trial;

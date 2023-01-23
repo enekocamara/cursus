@@ -6,13 +6,9 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:05:10 by ecamara           #+#    #+#             */
-/*   Updated: 2023/01/10 13:17:05 by ecamara          ###   ########.fr       */
+/*   Updated: 2023/01/10 13:20:13 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Vector.hpp"
 
-Vector::Vector (const Alloc& alloc)
-{
-    
-}

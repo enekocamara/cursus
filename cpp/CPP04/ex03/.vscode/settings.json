@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "__config": "cpp",
+        "__string": "cpp",
+        "algorithm": "cpp",
+        "cstddef": "cpp",
+        "functional": "cpp",
+        "typeinfo": "cpp",
+        "utility": "cpp",
+        "complex": "cpp",
+        "new": "cpp"
+    }
+}
