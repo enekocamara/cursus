@@ -6,7 +6,7 @@
 /*   By: ecamara <ecamara@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 12:26:11 by ecamara           #+#    #+#             */
-/*   Updated: 2023/01/11 13:05:40 by ecamara          ###   ########.fr       */
+/*   Updated: 2023/02/15 13:27:48 by ecamara          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,75 +14,127 @@
 #define VECTOR_HPP
 
 #include <memory>
-/*
-template <class T> class allocator;
-
-template <class T> class Alloc;
-*/
-template < class T, class Alloc = std::allocator<T> >
-class Vector
-{
-    public:
-        explicit Vector (const Alloc &alloc = Alloc());
-        explicit Vector (size_t n, const T& val = T(), const Alloc& alloc = Alloc());
-        template <class InputIterator> Vector (InputIterator first, InputIterator last, const Alloc& alloc = Alloc());
-        Vector (const Vector& x);
-
-        size_t capacity() const;
-        size_t size() const;
-        T *begin();
-        T *end();
-    private:
-        T *_array;
-        Alloc _alloc;
-        size_t _size;
-        size_t _capacity;                
-};
 
 
-template <class T, class Alloc>
-Vector<T, Alloc>::Vector (const Alloc &alloc)
-{
-    _alloc = alloc;
-    _size = 0;
-    _capacity = 0;
-    _array = NULL;
-}
+namespace ft{
+ /*---------------------------------- VECTOR ----------------------------------*/
 
-template <class T, class Alloc>
-Vector<T, Alloc>::Vector (size_t n, const T& val, const Alloc& alloc)
-{
-    _size = n;
-    _alloc = alloc;
-    _array = _alloc.allocate(n);
-    _capacity = n;
-    for(size_t i = 0; i < n; i++)
-        _alloc.construct(&_array[i], val);
+    template < class T, class Alloc = std::allocator<T> >
+    class Vector
+    {
+        public:
+            typedef T                                                               value_type;
+            typedef Alloc                                                           allocator_type;
+            typedef typename allocator_type::reference                              reference;
+            typedef typename allocator_type::const_reference                        const_reference;
+            typedef typename allocator_type::pointer                                pointer;
+            typedef typename allocator_type::const_pointer                          const_pointer;
+            typedef pointer                                                         iterator;
+            typedef const_pointer                                                   const_iterator;
+            typedef std::reverse_iterator<iterator>                                 reverse_iterator;
+            typedef std::reverse_iterator<const_iterator>                           const_reverse_iterator;
+            typedef typename std::iterator_traits<iterator>::difference_type        difference_type;
+            typedef difference_type                                                 size_type;
+
+            /*-------- CONSTRUCT --------*/
         
-}
+            explicit Vector (const Alloc &alloc = Alloc())
+            {
+                _alloc = alloc;
+                _size = 0;
+                _capacity = 0;
+                _array = NULL;
+            }
+            explicit Vector (size_type n, const value_type& val = value_type(), const Alloc& alloc = Alloc())
+            {
+                _size = n;
+                _alloc = alloc;
+                _array = _alloc.allocate(n);
+                _capacity = n;
+                for(size_type i = 0; i < n; i++)
+                    _alloc.construct(&_array[i], val);
+            }
+            explicit Vector (const Vector& x): _alloc(x._alloc), _size(x._size), _capacity(x._capacity), _array(_alloc.allocate(_capacity)){
+                for (size_type i = 0; i < _size; i++) {
+                    _alloc.construct(&_array[i], x._array[i]);
+                }
+            }
 
-template <class T, class Alloc>
-template <class InputIterator>
-Vector<T, Alloc>::Vector(InputIterator first, InputIterator last, const Alloc& alloc)
-{
-    _size = std::distance(first, last);
-    _array = alloc.allocatite(_size);
-    _capacity = _size;
-    for(size_t i = 0; i < _size; i++)
-        _alloc.construct(&_array[i], *(first + i));
-}
+            template <class InputIterator>
+            explicit Vector (InputIterator first, InputIterator last, const Alloc& alloc = Alloc(), typename std::enable_if<!std::is_integral<InputIterator>::value>::type * = 0)
+            {
+                _size = std::distance(first, last);
+                _alloc = alloc;
+                _array = _alloc.allocate(_size);
+                _capacity = _size;
+                for(size_type i = 0; i < _size; i++)
+                    _alloc.construct(&_array[i], *(first + i));
+            }
+            
+            /*----------- OPERATOR OVERLOAD -----------*/
 
-template <class T, class Alloc>
-size_t Vector<T, Alloc>::capacity() const
-{
-    return (_capacity);
-}
+            ft::Vector<value_type>& operator=(const Vector& x){
+                if (this != &x){
+                    if (_capacity < x._size){
+                        clear();
+                        reserve(x._size);
+                    }
+                    for (size_type i = 0; i < x._size; i++) {
+                        _array[i] = x._array[i];
+                    }
+                    _size = x._size;
+                }
+                return *this;
+            }
+            
+            void clear(){
+                for (size_type i = 0 ; i < _size; i++){
+                    _alloc.destroy(&_array[i]);
+                }
+                _size = 0;
+            }
 
-template <class T, class Alloc>
-size_t Vector<T, Alloc>::size() const
-{
-    return (_size);
-}
+            void reserve(size_type n){
+                if (n <= _capacity)
+                    return;
+            
+                pointer new_array = _alloc.allocate(n);
+                for (size_type i = 0; i < _size; i++) {
+                    _alloc.construct(&new_array[i], _array[i]);
+                    _alloc.destroy(&_array[i]);
+                }
+                _alloc.deallocate(_array, _capacity);
+                _array = new_array;
+                _capacity = n;
+            }
+            
+            void    push_back(value_type val){
+                if (_capacity < _size + 1){
+                    reserve(_size + 1);
+                }
+                _size++;
+                _alloc.construct(&_array[_size], val);
+            }
 
+            
+            
+            size_type  capacity() const {return _capacity;}
+            size_type  size() const{return _size;}
+            pointer begin()
+            {
+                return (&_array[0]);
+            }
+            pointer end()
+            {
+                return (&_array[_size]);
+            }
+
+        protected:
+            value_type      *_array;
+            allocator_type  _alloc;
+            size_type       _size;
+            size_type       _capacity;                
+    };
+}
 
 #endif
